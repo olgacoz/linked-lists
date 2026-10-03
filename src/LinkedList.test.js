@@ -12,7 +12,6 @@ test("creates empty linked list", () => {
 describe("append method", () => {
   test("appends new node to empty linked list", () => {
     list.append(123);
-
     expect(listToArray(list)).toEqual[123];
   });
 
@@ -35,7 +34,6 @@ describe("append method", () => {
 describe("prepend method", () => {
   test("prepends new node to empty linked list", () => {
     list.prepend(123);
-
     expect(listToArray(list)).toEqual([123]);
   });
 
@@ -62,7 +60,6 @@ describe("size method", () => {
 
   test("linked list has 1 node", () => {
     list.append(123);
-
     expect(list.size()).toBe(1);
   });
 
@@ -71,6 +68,24 @@ describe("size method", () => {
     list.append(2);
 
     expect(list.size()).toBe(2);
+  });
+});
+
+describe("head method", () => {
+  test("returns undefined for empty linked list", () => {
+    expect(list.head()).toBeUndefined();
+  });
+
+  test("returns first node's value in linked list (size 1)", () => {
+    list.append(25);
+    expect(list.head()).toBe(25);
+  });
+
+  test("returns first node's value in linked list (size 2)", () => {
+    list.append(2);
+    list.append(1);
+
+    expect(list.head()).toBe(2);
   });
 });
 
