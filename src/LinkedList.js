@@ -31,6 +31,10 @@ export default class LinkedList {
     }
     return size;
   }
+
+  head() {
+    return this.headNode?.value;
+  }
 }
 
 class Node {
