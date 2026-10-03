@@ -55,6 +55,25 @@ describe("prepend method", () => {
   });
 });
 
+describe("size method", () => {
+  test("size of empty linked list is 0", () => {
+    expect(list.size()).toBe(0);
+  });
+
+  test("linked list has 1 node", () => {
+    list.append(123);
+
+    expect(list.size()).toBe(1);
+  });
+
+  test("linked list has 2 nodes", () => {
+    list.append(1);
+    list.append(2);
+
+    expect(list.size()).toBe(2);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.head;
