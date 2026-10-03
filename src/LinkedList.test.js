@@ -105,6 +105,35 @@ describe("tail method", () => {
   });
 });
 
+describe("at method", () => {
+  test("returns undefined for index -1", () => {
+    expect(list.at(-1)).toBeUndefined();
+  });
+
+  test("returns undefined for empty linked list", () => {
+    expect(list.at(0)).toBeUndefined();
+    expect(list.at(1)).toBeUndefined();
+  });
+
+  test("returns undefined when index exceeds linked list length", () => {
+    list.append(1);
+    list.append(2);
+    expect(list.at(2)).toBeUndefined();
+    expect(list.at(3)).toBeUndefined();
+  });
+
+  test("returns undefined given a negative index on a list (size 1)", () => {
+    list.append(1);
+    expect(list.at(-1)).toBeUndefined();
+  });
+
+  test("returns the last node value of a list (size 2)", () => {
+    list.append(1);
+    list.append(2);
+    expect(list.at(1)).toBe(2);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
