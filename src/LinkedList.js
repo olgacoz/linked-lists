@@ -35,6 +35,18 @@ export default class LinkedList {
   head() {
     return this.headNode?.value;
   }
+
+  tail() {
+    if (this.headNode === null) {
+      return undefined;
+    }
+
+    let curr = this.headNode;
+    while (curr.nextNode !== null) {
+      curr = curr.nextNode;
+    }
+    return curr.value;
+  }
 }
 
 class Node {
