@@ -47,6 +47,23 @@ export default class LinkedList {
     }
     return curr.value;
   }
+
+  at(index) {
+    if (index < 0) {
+      return undefined;
+    }
+    let curr = this.headNode;
+    let i = 0;
+
+    while (curr !== null) {
+      if (i === index) {
+        return curr.value;
+      }
+      curr = curr.nextNode;
+      i++;
+    }
+    return undefined;
+  }
 }
 
 class Node {
@@ -55,3 +72,7 @@ class Node {
     this.nextNode = nextNode;
   }
 }
+
+const list = new LinkedList();
+console.log(list.append(1));
+console.log(list.at(-1));
