@@ -1,16 +1,16 @@
 export default class LinkedList {
   constructor() {
-    this.head = null;
+    this.headNode = null;
   }
 
   append(value) {
     const node = new Node(value);
 
-    if (this.head === null) {
-      this.head = node;
+    if (this.headNode === null) {
+      this.headNode = node;
       return;
     }
-    let curr = this.head;
+    let curr = this.headNode;
     while (curr.nextNode !== null) {
       curr = curr.nextNode;
     }
@@ -18,12 +18,12 @@ export default class LinkedList {
   }
 
   prepend(value) {
-    this.head = new Node(value, this.head);
+    this.headNode = new Node(value, this.headNode);
   }
 
   size() {
     let size = 0;
-    let curr = this.head;
+    let curr = this.headNode;
 
     while (curr !== null) {
       size++;

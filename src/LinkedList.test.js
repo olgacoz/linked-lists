@@ -6,7 +6,7 @@ beforeEach(() => {
 });
 
 test("creates empty linked list", () => {
-  expect(list.head).toBeNull();
+  expect(list.headNode).toBeNull();
 });
 
 describe("append method", () => {
@@ -76,7 +76,7 @@ describe("size method", () => {
 
 function listToArray(list) {
   const result = [];
-  let curr = list.head;
+  let curr = list.headNode;
 
   while (curr !== null) {
     result.push(curr.value);
