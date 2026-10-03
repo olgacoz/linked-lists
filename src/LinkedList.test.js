@@ -32,6 +32,29 @@ describe("append method", () => {
   });
 });
 
+describe("prepend method", () => {
+  test("prepends new node to empty linked list", () => {
+    list.prepend(123);
+
+    expect(listToArray(list)).toEqual([123]);
+  });
+
+  test("prepends new node to linked list of length 1", () => {
+    list.prepend(1);
+    list.prepend(2);
+
+    expect(listToArray(list)).toEqual([2, 1]);
+  });
+
+  test("prepends new node to linked list of length 2", () => {
+    list.prepend(1);
+    list.prepend(2);
+    list.prepend(3);
+
+    expect(listToArray(list)).toEqual([3, 2, 1]);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.head;
