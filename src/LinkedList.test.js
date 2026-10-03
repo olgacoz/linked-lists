@@ -89,6 +89,22 @@ describe("head method", () => {
   });
 });
 
+describe("tail method", () => {
+  test("returns undefined for empty linked list", () => {
+    expect(list.tail()).toBeUndefined();
+  });
+  test("returns final node's value in linked list (size 1)", () => {
+    list.append(1);
+    expect(list.tail()).toBe(1);
+  });
+  test("returns final node's value in linked list (size 2)", () => {
+    list.append(1);
+    list.append(2);
+
+    expect(list.tail()).toBe(2);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
