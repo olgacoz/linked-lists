@@ -134,6 +134,40 @@ describe("at method", () => {
   });
 });
 
+describe("pop method", () => {
+  test("returns undefined on empty list", () => {
+    expect(list.pop()).toBeUndefined();
+  });
+
+  test("returns first element on length 1 list", () => {
+    list.append(5);
+
+    expect(list.pop()).toBe(5);
+    expect(list.size()).toBe(0);
+    expect(list.head()).toBeUndefined();
+  });
+
+  test("returns first element on length 2 list", () => {
+    list.append(10);
+    list.append(11);
+
+    expect(list.pop()).toBe(10);
+    expect(list.size()).toBe(1);
+    expect(list.head()).toBe(11);
+  });
+
+  test("pops all elements in a list", () => {
+    list.append(10);
+    list.append(20);
+
+    expect(list.pop()).toBe(10);
+    expect(list.pop()).toBe(20);
+    expect(list.pop()).toBeUndefined();
+    expect(list.head()).toBeUndefined();
+    expect(list.size()).toBe(0);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
