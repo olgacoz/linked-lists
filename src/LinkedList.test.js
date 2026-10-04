@@ -168,6 +168,30 @@ describe("pop method", () => {
   });
 });
 
+describe("contains method", () => {
+  test("returns false for empty list", () => {
+    expect(list.contains(5)).toBe(false);
+  });
+
+  test("returns false if value is not in the list", () => {
+    list.append(5);
+    list.append(10);
+    list.append(13);
+
+    expect(list.contains(9)).toBe(false);
+  });
+
+  test("returns true if value is in the list", () => {
+    list.append(5);
+    list.append(10);
+    list.append(13);
+
+    expect(list.contains(10)).toBe(true);
+    expect(list.contains(13)).toBe(true);
+    expect(list.contains(5)).toBe(true);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
