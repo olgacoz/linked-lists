@@ -98,6 +98,21 @@ export default class LinkedList {
     }
     return -1;
   }
+
+  toString() {
+    if (this.headNode === null) {
+      return "";
+    }
+    const arr = [];
+    let curr = this.headNode;
+
+    while (curr !== null) {
+      arr.push(`( ${curr.value} )`);
+      curr = curr.nextNode;
+    }
+    arr.push("null");
+    return arr.join(" -> ");
+  }
 }
 
 class Node {
