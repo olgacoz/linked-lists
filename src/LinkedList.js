@@ -113,6 +113,42 @@ export default class LinkedList {
     arr.push("null");
     return arr.join(" -> ");
   }
+
+  insertAt(index, ...values) {
+    if (index < 0) {
+      throw new RangeError("Negative index");
+    }
+
+    if (values.length === 0) {
+      return;
+    }
+
+    const nodes = values.map((val) => new Node(val));
+    for (let i = 0; i < nodes.length - 1; i++) {
+      nodes[i].nextNode = nodes[i + 1];
+    }
+
+    if (index === 0) {
+      nodes[nodes.length - 1].nextNode = this.headNode;
+      this.headNode = nodes[0];
+      return;
+    }
+
+    let prev = this.headNode;
+    let i = 0;
+
+    while (prev !== null && i < index - 1) {
+      prev = prev.nextNode;
+      i++;
+    }
+
+    if (prev === null) {
+      throw new RangeError("Index is above list size");
+    }
+
+    nodes[nodes.length - 1].nextNode = prev.nextNode;
+    prev.nextNode = nodes[0];
+  }
 }
 
 class Node {
@@ -121,3 +157,11 @@ class Node {
     this.nextNode = nextNode;
   }
 }
+
+const list = new LinkedList();
+list.append(1);
+list.append(2);
+list.append(3);
+console.log(list.toString());
+list.insertAt(2, 5, 10);
+console.log(list.toString());
