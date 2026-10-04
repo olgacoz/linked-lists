@@ -64,6 +64,15 @@ export default class LinkedList {
     }
     return undefined;
   }
+
+  pop() {
+    if (this.headNode === null) {
+      return undefined;
+    }
+    const value = this.headNode.value;
+    this.headNode = this.headNode.nextNode;
+    return value;
+  }
 }
 
 class Node {
