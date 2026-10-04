@@ -121,7 +121,3 @@ class Node {
     this.nextNode = nextNode;
   }
 }
-
-const list = new LinkedList();
-console.log(list.append(1));
-console.log(list.at(-1));
