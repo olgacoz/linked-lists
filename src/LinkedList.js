@@ -149,6 +149,36 @@ export default class LinkedList {
     nodes[nodes.length - 1].nextNode = prev.nextNode;
     prev.nextNode = nodes[0];
   }
+
+  removeAt(index) {
+    if (index < 0 || this.headNode === null) {
+      throw new RangeError("Index out of bounds");
+    }
+    let targetNode;
+    if (index === 0) {
+      targetNode = this.headNode;
+      this.headNode = this.headNode.nextNode;
+      targetNode.nextNode = null;
+
+      return;
+    }
+
+    let prev = this.headNode;
+    let i = 0;
+
+    while (prev !== null && i < index - 1) {
+      prev = prev.nextNode;
+      i++;
+    }
+
+    if (prev === null || prev.nextNode === null) {
+      throw new RangeError("Index out of bounds");
+    }
+
+    targetNode = prev.nextNode;
+    prev.nextNode = prev.nextNode.nextNode;
+    targetNode.nextNode = null;
+  }
 }
 
 class Node {
@@ -157,11 +187,3 @@ class Node {
     this.nextNode = nextNode;
   }
 }
-
-const list = new LinkedList();
-list.append(1);
-list.append(2);
-list.append(3);
-console.log(list.toString());
-list.insertAt(2, 5, 10);
-console.log(list.toString());
