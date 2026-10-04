@@ -240,6 +240,62 @@ describe("toString method", () => {
   });
 });
 
+describe("insertAt method", () => {
+  test("inserting a node to 0th index of empty list", () => {
+    list.insertAt(0, 5);
+    expect(listToArray(list)).toEqual([5]);
+  });
+
+  test("inserting 2 nodes to 0th index of empty list", () => {
+    list.insertAt(0, 5, 6);
+    expect(listToArray(list)).toEqual([5, 6]);
+  });
+
+  test("throws RangeError for negative indices", () => {
+    expect(() => list.insertAt(-1, 5)).toThrow(RangeError);
+    expect(() => list.insertAt(-3, 2)).toThrow(RangeError);
+  });
+
+  test("throws RangeError if index is above list's size ", () => {
+    list.append(5);
+    list.append(6);
+    expect(() => list.insertAt(3, 7)).toThrow(RangeError);
+  });
+
+  test("inserts nodes between existing nodes", () => {
+    list.append(1);
+    list.append(2);
+    list.append(3);
+    list.insertAt(1, 5, 6);
+
+    expect(listToArray(list)).toEqual([1, 5, 6, 2, 3]);
+  });
+
+  test("inserts nodes at the tail when index equals list size", () => {
+    list.append(1);
+    list.append(2);
+    list.insertAt(2, 3, 4);
+
+    expect(listToArray(list)).toEqual([1, 2, 3, 4]);
+  });
+
+  test("inserts nodes at index 0 on a non-empty list", () => {
+    list.append(2);
+    list.append(3);
+    list.insertAt(0, 0, 1);
+
+    expect(listToArray(list)).toEqual([0, 1, 2, 3]);
+  });
+
+  test("does nothing when called without value arguments", () => {
+    list.append(1);
+    list.append(2);
+    list.insertAt(1);
+
+    expect(listToArray(list)).toEqual([1, 2]);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
