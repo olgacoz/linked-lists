@@ -223,6 +223,23 @@ describe("findIndex method", () => {
   });
 });
 
+describe("toString method", () => {
+  test("returns empty string for empty list", () => {
+    expect(list.toString()).toBe("");
+  });
+
+  test("stringifies list of length 1", () => {
+    list.append(10);
+    expect(list.toString()).toBe("( 10 ) -> null");
+  });
+
+  test("stringifies list of length 2", () => {
+    list.append(10);
+    list.append(20);
+    expect(list.toString()).toBe("( 10 ) -> ( 20 ) -> null");
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
