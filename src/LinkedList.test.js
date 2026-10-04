@@ -296,6 +296,68 @@ describe("insertAt method", () => {
   });
 });
 
+describe("removeAt method", () => {
+  test("throws RangeError when called on an empty list", () => {
+    expect(() => list.removeAt(1)).toThrow(RangeError);
+    expect(() => list.removeAt(-1)).toThrow(RangeError);
+    expect(() => list.removeAt(0)).toThrow(RangeError);
+  });
+
+  test("throws RangeError for negative indices and indices >= size", () => {
+    list.append(1);
+    list.append(2);
+
+    expect(() => list.removeAt(-1)).toThrow(RangeError);
+    expect(() => list.removeAt(2)).toThrow(RangeError);
+    expect(() => list.removeAt(10)).toThrow(RangeError);
+  });
+
+  test("removes head of a single-element list", () => {
+    list.append(3);
+    list.removeAt(0);
+    expect(listToArray(list)).toEqual([]);
+  });
+
+  test("removes head of a multi-element list", () => {
+    list.append(1);
+    list.append(2);
+    list.append(3);
+    list.removeAt(0);
+
+    expect(listToArray(list)).toEqual([2, 3]);
+  });
+
+  test("removes end of a multi-element list", () => {
+    list.append(10);
+    list.append(20);
+    list.append(30);
+    list.append(40);
+    list.removeAt(3);
+
+    expect(listToArray(list)).toEqual([10, 20, 30]);
+  });
+
+  test("removes middle node at index 2", () => {
+    list.append(1);
+    list.append(2);
+    list.append(3);
+    list.append(4);
+    list.removeAt(2);
+
+    expect(listToArray(list)).toEqual([1, 2, 4]);
+  });
+
+  test("empties list sequentially via multiple calls", () => {
+    list.append(1);
+    list.append(2);
+
+    list.removeAt(1);
+    list.removeAt(0);
+
+    expect(listToArray(list)).toEqual([]);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
