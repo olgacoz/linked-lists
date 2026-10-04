@@ -192,6 +192,37 @@ describe("contains method", () => {
   });
 });
 
+describe("findIndex method", () => {
+  test("returns -1 for empty list", () => {
+    expect(list.findIndex(1)).toBe(-1);
+  });
+
+  test("returns -1 if value can't be found in list", () => {
+    list.append(1);
+    list.append(2);
+    list.append(3);
+
+    expect(list.findIndex(4)).toBe(-1);
+  });
+
+  test("returns index of first match", () => {
+    list.append(10);
+    list.append(10);
+
+    expect(list.findIndex(10)).toBe(0);
+  });
+
+  test("returns correct index", () => {
+    list.append(4);
+    list.append(5);
+    list.append(50);
+
+    expect(list.findIndex(50)).toBe(2);
+    expect(list.findIndex(4)).toBe(0);
+    expect(list.findIndex(5)).toBe(1);
+  });
+});
+
 function listToArray(list) {
   const result = [];
   let curr = list.headNode;
